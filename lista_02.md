@@ -184,6 +184,7 @@ ______
 inicio
 
 //pega a idade do usuario
+
 int idade = prompt("Insira sua idade")
 
 //propoe uma condicao se a idade for menor de 16
