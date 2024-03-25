@@ -241,20 +241,33 @@ ______
 
 // define as variaveis
 velocidade_inicial // Velocidade inicial do carro (m/s)
+
 taxa_aceleracao // Taxa de aceleracao do carro (m/s^2)
+
 velocidade_maxima // Velocidade maxima permitida (m/s)
+
 tempo_maximo // Tempo maximo para completar a corrida (s)
+
 distancia_corrida // Distancia a ser percorrida na corrida (m)
 
+
 // calcula o tempo necessario para acabar a corrida
+
 tempo_necessario = (velocidade_maxima - velocidade_inicial) / taxa_aceleracao
+
 tempo_necessario = max(tempo_necessario, 0) // Garante que o tempo necessario seja nao negativo
 
+
 // verifica se o tempo necessario e menor ou igual ao tempo maximo
+
 se (tempo_necessario <= tempo_maximo) {
+
     imprimir("O carro completara a corrida em menos de ", tempo_maximo, " segundos.")
+
 } senao {
+
     imprimir("O carro nao conseguira completar a corrida dentro do tempo maximo.")
+    
 }
 
 
