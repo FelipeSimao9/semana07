@@ -97,12 +97,6 @@ function calculaOrcamento2(){
 
 Escolha a opção que responde corretamente qual seria a saída após a execução de cada função:
 
-A) As funções calcularOrcamento() e calcularOrcamento2() teriam a mesma saída: 'Seu saldo é negativo de -1050.'
-
-B) A saída de calcularOrcamento() seria: 'Seu saldo é negativo de -1050.' e a de calcularOrcamento2() seria: 'Seu saldo é negativo de -100.'
-
-C) A saída de calcularOrcamento() seria: 'Seu saldo é negativo de -100.' e a de calcularOrcamento2() seria: 'Seu saldo é negativo de -1050.'
-
 D) As funções calcularOrcamento() e calcularOrcamento2() teriam a mesma saída: 'Seu saldo é negativo de -100.'
 
 ______
@@ -189,10 +183,13 @@ ______
 
 inicio
 
+//pega a idade do usuario
 int idade = prompt("Insira sua idade")
 
+//propoe uma condicao se a idade for menor de 16
 IF (idade < 16) {
     entao imprima "nao pode votar!"
+        //se a pessoa nao for menor de 16, cria uma nova condicao que distribui 2 grupos, maior de 18 ou menor de 18
         IF ELSE (idade >=16 e <18)
             entao imprima "voto facultativo!"
             senao imprima "voto obrigatorio!"
@@ -214,11 +211,51 @@ Classe FormaGeometrica:
     Método CalcularArea():
         # Implementação genérica para cálculo de área, a ser sobrescrita pelas subclasses.
 
+Classe Retangulo (herda de FormaGeometrica):
+    atributos:
+        - comprimento
+        - largura
+
+    metodo construtor(cor, comprimento, largura):
+        Chama o construtor da classe base para definir a cor e inicializa os atributos comprimento e largura.
+
+    metodo CalcularArea():
+        Retorna o valor da área do retângulo, calculado como comprimento * largura.
+
+classe circulo (herda de FormaGeometrica):
+    Atributos:
+        - raio
+
+    metodo construtor(cor, raio):
+        Chama o construtor da classe base para definir a cor e inicializa o atributo raio.
+
+    metodo CalcularArea():
+        Retorna o valor da area do circulo, calculado como π * raio^2.
+
+
 ```
 
 ______
 
 **9)** Você foi contratado(a) como estagiário(a) da Tesla e está participando do desenvolvimento de um programa para simular o desempenho de um carro elétrico em uma corrida. Seu objetivo é determinar em quantos minutos o carro levará para completar uma determinada distância, levando em consideração uma velocidade inicial e uma taxa de aceleração constante. No entanto, você deseja garantir que o carro não exceda uma velocidade máxima nem que a corrida demore mais do que um tempo máximo. Implemente a lógica dessa simulação em pseudocódigo.
+
+// define as variaveis
+velocidade_inicial // Velocidade inicial do carro (m/s)
+taxa_aceleracao // Taxa de aceleracao do carro (m/s^2)
+velocidade_maxima // Velocidade maxima permitida (m/s)
+tempo_maximo // Tempo maximo para completar a corrida (s)
+distancia_corrida // Distancia a ser percorrida na corrida (m)
+
+// calcula o tempo necessario para acabar a corrida
+tempo_necessario = (velocidade_maxima - velocidade_inicial) / taxa_aceleracao
+tempo_necessario = max(tempo_necessario, 0) // Garante que o tempo necessario seja nao negativo
+
+// verifica se o tempo necessario e menor ou igual ao tempo maximo
+se (tempo_necessario <= tempo_maximo) {
+    imprimir("O carro completara a corrida em menos de ", tempo_maximo, " segundos.")
+} senao {
+    imprimir("O carro nao conseguira completar a corrida dentro do tempo maximo.")
+}
 
 
 
@@ -227,27 +264,32 @@ ______
 **10)** Uma matriz é uma coleção bidimensional de elementos, organizados em linhas e colunas. A seguir, é fornecida a implementação da função SomaDeMatrizes(matrizA, matrizB), que calcula a soma de duas matrizes. Sua tarefa é implementar uma função semelhante, porém que realize a multiplicação de duas matrizes.
 
 ```
-Função SomaDeMatrizes(matrizA, matrizB):
-    # Verifica se as duas matrizes têm o mesmo número de linhas e colunas
-    Se tamanho(matrizA) ≠ tamanho(matrizB) então:
-        Retornar "As matrizes não podem ser somadas. Elas têm dimensões diferentes."
+Função MultiplicacaoDeMatrizes(matrizA, matrizB):
+    # Verifica se o número de colunas da matrizA é igual ao número de linhas da matrizB
+    Se tamanho(matrizA[0]) ≠ tamanho(matrizB) então:
+        Retornar "As matrizes não podem ser multiplicadas. Número de colunas de matrizA não é igual ao número de linhas de matrizB."
     Senão:
-        linhas <- tamanho(matrizA)
-        colunas <- tamanho(matrizA[0]) # Considerando que todas as linhas têm o mesmo número de colunas
-        matrizResultado <- novaMatriz(linhas, colunas)
+        linhasA <- tamanho(matrizA)
+        colunasA <- tamanho(matrizA[0]) # Número de colunas de matrizA
+        colunasB <- tamanho(matrizB[0]) # Número de colunas de matrizB
+        matrizResultado <- novaMatriz(linhasA, colunasB)
 
-        # Loop para percorrer cada elemento das matrizes e calcular a soma
-        Para i de 0 até linhas-1 faça:
-            Para j de 0 até colunas-1 faça:
-                matrizResultado[i][j] <- matrizA[i][j] + matrizB[i][j]
+        # Loop para percorrer cada elemento das matrizes e calcular a multiplicação
+        Para i de 0 até linhasA-1 faça:
+            Para j de 0 até colunasB-1 faça:
+                soma <- 0
+                Para k de 0 até colunasA-1 faça:
+                    soma <- soma + matrizA[i][k] * matrizB[k][j]
+                matrizResultado[i][j] <- soma
 
         Retornar matrizResultado
 
 # Exemplo de uso da função
-matrizA <- [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-matrizB <- [[9, 8, 7], [6, 5, 4], [3, 2, 1]]
+matrizA <- [[1, 2], [3, 4]]
+matrizB <- [[5, 6], [7, 8]]
 
-matrizSoma <- SomaDeMatrizes(matrizA, matrizB)
-Escrever("Soma das matrizes:")
-ImprimirMatriz(matrizSoma)
+matrizMultiplicacao <- MultiplicacaoDeMatrizes(matrizA, matrizB)
+Escrever("Produto das matrizes:")
+ImprimirMatriz(matrizMultiplicacao)
+
 ```
